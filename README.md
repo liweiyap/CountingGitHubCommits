@@ -1,6 +1,6 @@
 ## Aims
 
-* To count the respective number of commits that any GitHub user has made to the respective default branch of his/her **public** repositories, **excluding forked repositories**. The necessary data is scraped from the API of the GitHub webpage.
+* To count the respective number of commits that any GitHub user has made to the respective default branch of his/her **public** repositories, **excluding forked repositories**. The necessary data is scraped from the [API](https://api.github.com/) of the GitHub webpage.
 * To sort these repositories according to the number of commits made by said GitHub user.
 
 ## Methods
