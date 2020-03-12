@@ -7,16 +7,22 @@ import numpy as np
 
 
 def get_user_commits(your_username, my_username, my_password):
-    response_repos = requests.get('https://api.github.com/users/%s/repos' % your_username, auth=(my_username,my_password))
-    df = pd.DataFrame(np.zeros([len(response_repos.json()),2]), columns=['Name','Commits'], dtype=int)
-    idx = 0
-    for repo in response_repos.json():
-        if not repo['fork']:
-            df.loc[idx,'Name'] = repo['name']
-            commits_url = re.sub('{/sha}', '', repo['commits_url'])
-            df.loc[idx,'Commits'] = get_repo_commits(commits_url, my_username, my_password)
-            idx += 1
-    return df[0:idx].sort_values(by=['Commits'], ascending=False)
+    page_idx = 1
+    response_repos = requests.get('https://api.github.com/users/%s/repos?page=%d' % (your_username,page_idx), auth=(my_username,my_password))
+    df = pd.DataFrame(columns=['Name','Commits'], dtype=int)
+    while (len(response_repos.json()) != 0):
+        sub_df = pd.DataFrame(np.zeros([len(response_repos.json()),2]), columns=['Name','Commits'], dtype=int)
+        repo_idx = 0
+        for repo in response_repos.json():
+            if not repo['fork']:
+                sub_df.loc[repo_idx,'Name'] = repo['name']
+                commits_url = re.sub('{/sha}', '', repo['commits_url'])
+                sub_df.loc[repo_idx,'Commits'] = get_repo_commits(commits_url, my_username, my_password)
+                repo_idx += 1
+        df = pd.concat([df, sub_df[0:repo_idx]])
+        page_idx += 1
+        response_repos = requests.get('https://api.github.com/users/%s/repos?page=%d' % (your_username,page_idx), auth=(my_username,my_password))
+    return df.sort_values(by=['Commits'], ascending=False)
 
 def get_repo_commits(commits_url, my_username, my_password):
     response_commits = requests.get(commits_url, auth=(my_username, my_password))
