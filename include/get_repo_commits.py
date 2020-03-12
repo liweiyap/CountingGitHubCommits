@@ -13,7 +13,8 @@ def get_repo_commits(commits_url, your_username, my_username, my_password):
     n_commits = 0
     while (len(commits) != 0):
         for commit in commits:
-            if commit['commit']['author']['name'] == your_username or commit['commit']['author']['name'] == your_name:
+            author = commit['commit']['author']['name']
+            if author == your_username or author == your_name:
                 n_commits += 1
         commits_url = re.sub('\?page=%d' % page_idx, '?page=%d' % (page_idx+1), commits_url)
         page_idx += 1
