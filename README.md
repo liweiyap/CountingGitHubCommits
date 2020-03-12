@@ -17,8 +17,8 @@ The latter two arguments are there only as a precaution; in case too many reques
 * [requests](https://github.com/psf/requests)
 * [json](https://github.com/python/cpython/blob/3.8/Lib/json/__init__.py)
 * [re](https://github.com/python/cpython/blob/3.8/Lib/re.py)
-* [numpy](https://github.com/numpy/numpy)
 * [pandas](https://github.com/pandas-dev/pandas)
+* [numpy](https://github.com/numpy/numpy)
 
 ## Running
 
@@ -27,7 +27,7 @@ To create a local copy of this repository, simply click 'Download'. Alternativel
 git clone https://github.com/liweiyap/SortingGitHubReposByCommits.git
 ```
 
-Next, to run, simply execute the following in the root of the repository:
+Next, to run, simply execute the following **in the root of the repository**:
 ```
 python main.py <your_username> <my_username> <my_password>
 ```
