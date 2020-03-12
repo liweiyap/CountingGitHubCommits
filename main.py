@@ -16,7 +16,7 @@ def get_user_commits(your_username, my_username, my_password):
         for repo in response_repos.json():
             if not repo['fork']:
                 sub_df.loc[repo_idx,'Name'] = repo['name']
-                commits_url = re.sub('{/sha}', '', repo['commits_url'])
+                commits_url = re.sub('{/sha}', '?page=1', repo['commits_url'])
                 sub_df.loc[repo_idx,'Commits'] = get_repo_commits(commits_url, my_username, my_password)
                 repo_idx += 1
         df = pd.concat([df, sub_df[0:repo_idx]])
@@ -25,21 +25,17 @@ def get_user_commits(your_username, my_username, my_password):
     return df.sort_values(by=['Commits'], ascending=False)
 
 def get_repo_commits(commits_url, my_username, my_password):
+    page_idx = 1
     response_commits = requests.get(commits_url, auth=(my_username, my_password))
     commits = json.loads(response_commits.content)
-    n_commits = len(commits)
-    if response_commits.headers.get('link'):
-        next_commits_url = get_next_commits_url(response_commits)
-        if next_commits_url:
-            n_commits += get_repo_commits(next_commits_url, my_username, my_password)
+    n_commits = 0
+    while (len(commits) != 0):
+        n_commits += len(commits)
+        commits_url = re.sub('\?page=%d' % page_idx, '?page=%d' % (page_idx+1), commits_url)
+        page_idx += 1
+        response_commits = requests.get(commits_url, auth=(my_username, my_password))
+        commits = json.loads(response_commits.content)
     return n_commits
-
-def get_next_commits_url(response_commits):
-    links = response_commits.headers['link']
-    for link in links.split(','):
-        link_next, link_last = link.split(';')
-        if link_last.strip() == 'rel="next"':
-            return link_next.strip()[1:-1]  # remove '<' and '>'
 
 def main():
     try:
