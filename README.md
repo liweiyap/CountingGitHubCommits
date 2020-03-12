@@ -31,4 +31,4 @@ Next, to run, simply execute the following **in the root of the repository**:
 ```
 python main.py <your_username> <my_username> <my_password>
 ```
-whilst filling in the desired/appropriate values for the 3 arguments.
+whilst filling in the desired/appropriate values for the 3 arguments. The output will be printed on the command line as a [Pandas](https://github.com/pandas-dev/pandas) dataframe.
