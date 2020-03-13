@@ -4,6 +4,15 @@ import pycurl
 curl_headers = {}
 
 def display_curl_headers(header_line):
+    """
+    Optional header function for PycURL object.
+    
+    Args:
+        header_line: byte string containing information for headers.
+    
+    Returns:
+        None XOR no. of bytes written/displayed.
+    """
     header_line = header_line.decode('iso-8859-1')
     if ':' not in header_line:
         return

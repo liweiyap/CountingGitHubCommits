@@ -4,6 +4,22 @@ import json
 
 
 def get_repo_commits(commits_url, your_username, my_username, my_password):
+    """
+    Gets no. of commits made by your_username to the respective default branch of a specific GitHub repository under commits_url.
+    The necessary data is scraped from the GitHub API.
+    
+    Args:
+        commits_url: URL with JSON metadata for commits.
+        your_username: the GitHub username of the user whose commits you want to count and sort by repository.
+        my_username: your own GitHub username for authentication. Authenticated requests get a higher hourly API rate limit.
+        my_password: your own GitHub password for authentication. Authenticated requests get a higher hourly API rate limit.
+    
+    Returns:
+        Total no. of commits made by your_username to this GitHub repository.
+    
+    Throws:
+        TypeError: Exception if GitHub repository is empty (i.e. no commits).
+    """
     response_user = requests.get('https://api.github.com/users/%s' % your_username, auth=(my_username,my_password))
     your_name = response_user.json()['name']
     

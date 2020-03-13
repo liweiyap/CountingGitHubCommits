@@ -5,6 +5,21 @@ from include.display_curl_headers import *
 
 
 def get_user_commits(your_username, my_username, my_password):
+    """
+    Gets no. of commits made by your_username to the respective default branch of his/her public, non-forked GitHub repositories.
+    The necessary data is scraped from the GitHub API.
+    
+    Args:
+        your_username: the GitHub username of the user whose commits you want to count and sort by repository.
+        my_username: your own GitHub username for authentication. Authenticated requests get a higher hourly API rate limit.
+        my_password: your own GitHub password for authentication. Authenticated requests get a higher hourly API rate limit.
+    
+    Returns:
+        Pandas dataframe of repositories sorted by no. of commits.
+    
+    Throws:
+        TypeError: Exception if typo in command-line arguments / GitHub user has no repositories / my hourly API rate limit is exceeded.
+    """
     page_idx = 1
     response_repos = requests.get('https://api.github.com/users/%s/repos?page=%d' % (your_username,page_idx), auth=(my_username,my_password))
     df = pd.DataFrame(columns=['Name','Commits'], dtype=int)
