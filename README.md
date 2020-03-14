@@ -10,7 +10,7 @@ The main program in [`main.py`](https://github.com/liweiyap/SortingGitHubReposBy
 * `my_username`: your own GitHub username.
 * `my_password`: your own GitHub password.
 
-The latter two arguments are there only as a precaution; in case too many requests have been made for information from the GitHub API, GitHub will return the following error message: `API rate limit exceeded`. To circumvent this, we can use a simple digest authentication of our requests by providing our own GitHub username and password. This is because [authenticated requests get a higher rate limit](https://developer.github.com/v3/#rate-limiting).
+The latter two arguments are there only as a precaution; in case too many requests have been made for information from the GitHub API in the past hour, GitHub will return the following error message: `API rate limit exceeded`. To circumvent this, we can use a simple digest authentication of our requests by providing our own GitHub username and password. This is because [authenticated requests have a higher hourly rate limit](https://developer.github.com/v3/#rate-limiting).
 
 ## Python Dependencies
 
