@@ -16,12 +16,18 @@ def main():
     try:
         if (len(sys.argv) > 3):
             print("WARNING: Only two arguments needed: your_username and my_token.")
-        df = get_user_commits(sys.argv[1], sys.argv[2])
+        
+        if (len(sys.argv) == 2):
+            df = get_user_commits(sys.argv[1])
+        elif (len(sys.argv) == 3):
+            df = get_user_commits(sys.argv[1], sys.argv[2])
+        
         print(df.to_string(index=False))
         print("\nTotal repositories:", len(df.index))
         print("Total commits:", df['Commits'].sum())
+        
     except IndexError:
-        print("ERROR: Check that there are exactly two arguments: your_username and my_token.")
+        print("ERROR: Check that there are at most two arguments: your_username (always required) and my_token (optional but recommended in case hourly API rate limit is exceeded).")
 
 #-------------------------#
 

@@ -4,7 +4,14 @@ from include.get_repo_commits import *
 from include.display_curl_headers import *
 
 
-def get_user_commits(your_username, my_token):
+def get_response_repos(your_username, my_token, page_idx):
+    if my_token:
+        response_repos = requests.get('https://api.github.com/users/%s/repos?page=%d' % (your_username,page_idx), headers={'Authorization': 'token %s' % my_token})
+    else:
+        response_repos = requests.get('https://api.github.com/users/%s/repos?page=%d' % (your_username,page_idx))
+    return response_repos
+
+def get_user_commits(your_username, my_token=""):
     """
     Gets no. of commits made by your_username to the respective default branch of his/her public, non-forked GitHub repositories.
     The necessary data is scraped from the GitHub API.
@@ -20,7 +27,7 @@ def get_user_commits(your_username, my_token):
         TypeError: Exception if typo in command-line arguments / GitHub user has no repositories / my hourly API rate limit is exceeded.
     """
     page_idx = 1
-    response_repos = requests.get('https://api.github.com/users/%s/repos?page=%d' % (your_username,page_idx), headers={'Authorization': 'token %s' % my_token})
+    response_repos = get_response_repos(your_username, my_token, page_idx)
     df = pd.DataFrame(columns=['Name','Commits'], dtype=int)
     try:
         while (len(response_repos.json()) != 0):
@@ -34,13 +41,14 @@ def get_user_commits(your_username, my_token):
                     repo_idx += 1
             df = pd.concat([df, sub_df[0:repo_idx]])
             page_idx += 1
-            response_repos = requests.get('https://api.github.com/users/%s/repos?page=%d' % (your_username,page_idx), headers={'Authorization': 'token %s' % my_token})
+            response_repos = get_response_repos(your_username, my_token, page_idx)
     except TypeError:
         print("ERROR: Check that the two arguments (your_username and my_token) do not contain any typos. Also, check that the GitHub user has repositories, and that you have not exceeded the hourly API rate limit:")
         crl = pycurl.Curl()
         crl.setopt(crl.URL, 'https://api.github.com')
         crl.setopt(crl.HEADERFUNCTION, display_curl_headers)
-        crl.setopt(pycurl.HTTPHEADER, ["Authorization: token %s" % my_token])
+        if my_token:
+            crl.setopt(pycurl.HTTPHEADER, ["Authorization: token %s" % my_token])
         crl.perform()
         print(curl_headers)
     return df.sort_values(by=['Commits'], ascending=False)
