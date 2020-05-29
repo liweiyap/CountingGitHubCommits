@@ -5,12 +5,11 @@
 
 ## Methods
 
-The main program in [`main.py`](https://github.com/liweiyap/SortingGitHubReposByCommits/blob/master/main.py) **must** take 3 arguments from the command line:
-* `your_username`: the GitHub username of the user whose commits you want to count and sort by repository.
-* `my_username`: your own GitHub username.
-* `my_password`: your own GitHub password.
+The main program in [`main.py`](https://github.com/liweiyap/SortingGitHubReposByCommits/blob/master/main.py) takes 2 arguments from the command line:
+* `your_username` **(mandatory)**: the GitHub username of the user whose commits you want to count and sort by repository.
+* `my_token` **(optional but recommended)**: your own GitHub personal access token.
 
-The latter two arguments are there only as a precaution; in case too many requests have been made for information from the GitHub API in the past hour, GitHub will return the following error message: `API rate limit exceeded`. To circumvent this, we can use a simple digest authentication of our requests by providing our own GitHub username and password. This is because [authenticated requests have a higher hourly rate limit](https://developer.github.com/v3/#rate-limiting).
+The latter argument is there only as a precaution; in case too many requests have been made for information from the GitHub API in the past hour, GitHub will return the following error message: `API rate limit exceeded`. To circumvent this, we can use a simple digest authentication of our requests by providing our own GitHub personal access token. This is because [authenticated requests have a higher hourly rate limit](https://developer.github.com/v3/#rate-limiting).
 
 ## Python Dependencies
 
@@ -28,11 +27,13 @@ To create a local copy of this repository, simply click 'Download'. Alternativel
 git clone https://github.com/liweiyap/SortingGitHubReposByCommits.git
 ```
 
+`run_main.sh` is a Bash script that wraps around the running of `main.py` on the command line. Optionally, follow the instructions in [this link](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) to generate your own personal access token (if you haven't already done so). Then, open up `run_main.sh` and set the `MY_TOKEN` variable to your generated token.
+
 Next, to run, simply execute the following **in the root of the repository**:
 ```
-python main.py <your_username> <my_username> <my_password>
+./run_main.sh <your_username>
 ```
-whilst filling in the desired/appropriate values for the 3 arguments. The output will be printed on the command line as a [Pandas](https://github.com/pandas-dev/pandas) dataframe.
+whilst filling in the desired/appropriate value for the `your_username` argument. The output will be printed on the command line as a [Pandas](https://github.com/pandas-dev/pandas) dataframe.
 
 ## Tests
 
