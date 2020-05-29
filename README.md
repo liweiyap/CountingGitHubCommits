@@ -27,7 +27,7 @@ To create a local copy of this repository, simply click 'Download'. Alternativel
 git clone https://github.com/liweiyap/SortingGitHubReposByCommits.git
 ```
 
-`run_main.sh` is a Bash script that wraps around the running of `main.py` on the command line. Optionally, follow the instructions in [this link](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) to generate your own personal access token (if you haven't already done so). Then, open up `run_main.sh` and set the `MY_TOKEN` variable to your generated token.
+[`run_main.sh`](https://github.com/liweiyap/SortingGitHubReposByCommits/blob/master/run_main.sh) is a Bash script that wraps around the running of [`main.py`](https://github.com/liweiyap/SortingGitHubReposByCommits/blob/master/main.py) on the command line. Optionally, follow the instructions in [this link](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) to generate your own personal access token (if you haven't already done so). Then, open up [`run_main.sh`](https://github.com/liweiyap/SortingGitHubReposByCommits/blob/master/run_main.sh) and set the `MY_TOKEN` variable to your generated token.
 
 Next, to run, simply execute the following **in the root of the repository**:
 ```
