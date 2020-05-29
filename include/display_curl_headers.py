@@ -11,7 +11,7 @@ def display_curl_headers(header_line):
         header_line: byte string containing information for headers.
     
     Returns:
-        None XOR no. of bytes written/displayed.
+        Either None or no. of bytes written/displayed.
     """
     header_line = header_line.decode('iso-8859-1')
     if ':' not in header_line:
