@@ -39,7 +39,7 @@ whilst filling in the desired/appropriate value for the `your_username` argument
 
 I have tested the code with 40 of the GitHub users whom I am following.
 
-For example, when running `./run_main.sh liweiyap`, the following output is obtained:
+For example, when running <code>./run_main.sh <a href="https://github.com/liweiyap">liweiyap</a></code>, the following output is obtained:
 ```
                                Name  Commits
                  LeetCode_Solutions       92
