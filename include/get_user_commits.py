@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from include.get_repo_commits import *
+from include.get_repo_commits import requests, re, get_repo_commits
 from include.display_curl_headers import *
 
 
