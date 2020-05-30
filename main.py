@@ -28,6 +28,9 @@ def main():
         
     except IndexError:
         print("ERROR: Check that there are at most two arguments: your_username (always required) and my_token (optional but recommended in case hourly API rate limit is exceeded).")
+        
+    except UnboundLocalError:
+        print("ERROR: Check that there is at least one argument: your_username (always required) and my_token (optional but recommended in case hourly API rate limit is exceeded).")
 
 #-------------------------#
 

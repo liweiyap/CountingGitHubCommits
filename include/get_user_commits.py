@@ -5,11 +5,25 @@ from include.display_curl_headers import *
 
 
 def get_response_repos(your_username, my_token, page_idx):
+    """
+    Wrapper around the function `requests.get()`.
+    If my_token is supplied by me (i.e. it's not an empty string), then use authentication.
+    Otherwise, go ahead without authentication.
+    
+    Args:
+        your_username: the GitHub username of the user whose commits you want to count and sort by repository.
+        my_token: your own GitHub personal access token for authentication. Authenticated requests get a higher hourly API rate limit.
+        page_idx: page number on the list of repositories of the GitHub user on the API.
+    
+    Returns:
+        Response object for all repositories on specific page on the list of repositories of the GitHub user on the API.
+    """
     if my_token:
         response_repos = requests.get('https://api.github.com/users/%s/repos?page=%d' % (your_username,page_idx), headers={'Authorization': 'token %s' % my_token})
     else:
         response_repos = requests.get('https://api.github.com/users/%s/repos?page=%d' % (your_username,page_idx))
     return response_repos
+
 
 def get_user_commits(your_username, my_token=""):
     """

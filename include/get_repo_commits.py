@@ -4,18 +4,44 @@ import json
 
 
 def get_response_user(your_username, my_token):
+    """
+    Wrapper around the function `requests.get()`.
+    If my_token is supplied by me (i.e. it's not an empty string), then use authentication.
+    Otherwise, go ahead without authentication.
+    
+    Args:
+        your_username: the GitHub username of the user whose commits you want to count and sort by repository.
+        my_token: your own GitHub personal access token for authentication. Authenticated requests get a higher hourly API rate limit.
+    
+    Returns:
+        Response object for the GitHub user on the API.
+    """
     if my_token:
         response_user = requests.get('https://api.github.com/users/%s' % your_username, headers={'Authorization': 'token %s' % my_token})
     else:
         response_user = requests.get('https://api.github.com/users/%s' % your_username)
     return response_user
 
+
 def get_response_commits(commits_url, my_token):
+    """
+    Wrapper around the function `requests.get()`.
+    If my_token is supplied by me (i.e. it's not an empty string), then use authentication.
+    Otherwise, go ahead without authentication.
+    
+    Args:
+        commits_url: URL with JSON metadata for commits.
+        my_token: your own GitHub personal access token for authentication. Authenticated requests get a higher hourly API rate limit.
+    
+    Returns:
+        Response object for no. of commits by the GitHub user on the API.
+    """
     if my_token:
         response_commits = requests.get(commits_url, headers={'Authorization': 'token %s' % my_token})
     else:
         response_commits = requests.get(commits_url)
     return response_commits
+
 
 def get_repo_commits(commits_url, your_username, my_token):
     """

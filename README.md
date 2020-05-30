@@ -22,7 +22,7 @@ The latter argument is there only as a precaution; in case too many requests hav
 
 ## Running
 
-To create a local copy of this repository, simply click 'Download'. Alternatively, clone it by first navigating to the path you want to store the local copy and then executing the following on the command line:
+To create a local copy of this repository, clone it by first navigating to the path you want to store the local copy and then executing the following on the command line:
 ```
 git clone https://github.com/liweiyap/SortingGitHubReposByCommits.git
 ```
@@ -38,3 +38,22 @@ whilst filling in the desired/appropriate value for the `your_username` argument
 ## Tests
 
 I have tested the code with 40 of the GitHub users whom I am following.
+
+For example, when running `./run_main.sh liweiyap`, the following output is obtained:
+```
+                               Name  Commits
+                 LeetCode_Solutions       92
+                 liweiyap.github.io       60
+                  Conway_GameOfLife       53
+ HackerRank-InterviewPreparationKit       43
+                              MyCPU       40
+                     ProteinFolding       34
+          DataStructures_Algorithms       26
+        SortingGitHubReposByCommits       23
+                                PvZ       22
+                      metawear-impl       21
+   VectorMatrixElementaryOperations        5
+
+Total repositories: 11
+Total commits: 419
+```
