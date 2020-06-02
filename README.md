@@ -49,11 +49,11 @@ For example, when running <code>./run_main.sh <a href="https://github.com/liweiy
                               MyCPU       40
                      ProteinFolding       34
           DataStructures_Algorithms       26
-        SortingGitHubReposByCommits       23
+                      metawear-impl       26
+        SortingGitHubReposByCommits       26
                                 PvZ       22
-                      metawear-impl       21
    VectorMatrixElementaryOperations        5
 
 Total repositories: 11
-Total commits: 419
+Total commits: 427
 ```

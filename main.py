@@ -11,7 +11,7 @@ def main():
     respective default branch from your_username.
     
     Throws:
-        IndexError: Exception if <2 arguments given to command line.
+        UnboundLocalError: Exception if no arguments given to command line.
     """
     try:
         if (len(sys.argv) > 3):
@@ -25,9 +25,6 @@ def main():
         print(df.to_string(index=False))
         print("\nTotal repositories:", len(df.index))
         print("Total commits:", df['Commits'].sum())
-        
-    except IndexError:
-        print("ERROR: Check that there are at most two arguments: your_username (always required) and my_token (optional but recommended in case hourly API rate limit is exceeded).")
         
     except UnboundLocalError:
         print("ERROR: Check that there is at least one argument: your_username (always required) and my_token (optional but recommended in case hourly API rate limit is exceeded).")
