@@ -20,6 +20,8 @@ The latter argument is there only as a precaution; in case too many requests hav
 * [numpy](https://github.com/numpy/numpy)
 * [pycurl](https://github.com/pycurl/pycurl)
 
+In addition, make sure that Python 3 (not Python 2) is installed. (This code has been tested on Python 3.7.4.)
+
 ## Running
 
 To create a local copy of this repository, clone it by first navigating to the path you want to store the local copy and then executing the following on the command line:
@@ -44,16 +46,16 @@ For example, when running <code>./run_main.sh <a href="https://github.com/liweiy
                                Name  Commits
                  LeetCode_Solutions       92
                  liweiyap.github.io       60
-                  Conway_GameOfLife       53
+                  Conway_GameOfLife       54
  HackerRank-InterviewPreparationKit       43
+                     ProteinFolding       43
                               MyCPU       40
-                     ProteinFolding       34
+        SortingGitHubReposByCommits       27
           DataStructures_Algorithms       26
                       metawear-impl       26
-        SortingGitHubReposByCommits       26
                                 PvZ       22
-   VectorMatrixElementaryOperations        5
+   VectorMatrixElementaryOperations        6
 
 Total repositories: 11
-Total commits: 427
+Total commits: 439
 ```
