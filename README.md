@@ -20,7 +20,7 @@ The latter argument is there only as a precaution; in case too many requests hav
 * [numpy](https://github.com/numpy/numpy)
 * [pycurl](https://github.com/pycurl/pycurl)
 
-In addition, make sure that Python 3 (not Python 2) is installed. (This code has been tested on Python 3.7.4.)
+In addition, make sure that Python 3 (not Python 2) is used. (This code has been tested on Python 3.7.4.)
 
 ## Running
 
@@ -50,12 +50,12 @@ For example, when running <code>./run_main.sh <a href="https://github.com/liweiy
  HackerRank-InterviewPreparationKit       43
                      ProteinFolding       43
                               MyCPU       40
-        SortingGitHubReposByCommits       27
+        SortingGitHubReposByCommits       28
           DataStructures_Algorithms       26
                       metawear-impl       26
                                 PvZ       22
    VectorMatrixElementaryOperations        6
 
 Total repositories: 11
-Total commits: 439
+Total commits: 440
 ```
